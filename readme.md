@@ -16,7 +16,7 @@ Para executar o projeto, siga as instruções abaixo:
 
 1. Clone este repositório em sua máquina local.
 
-2. Certifique-se de ter o Pygame instalado.
+2. Certifique-se de ter o Pygame e as outras dependências foram instaladas.
 
 3. Navegue até o diretório do projeto e execute o seguinte comando:
 
