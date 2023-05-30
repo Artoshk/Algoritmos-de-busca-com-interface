@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from search_functions import flooding, random_walk
 from validate import read_and_validate_network
 
-G = read_and_validate_network("C:/Users/ander/OneDrive/Desktop/Algoritmos-de-busca-com-interface/grafo.txt")
+G = read_and_validate_network("grafo.txt")
 cache_dfs = {}
 cache_bfs = {}
 
