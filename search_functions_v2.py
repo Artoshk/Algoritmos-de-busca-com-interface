@@ -20,6 +20,7 @@ def flooding(graph: nx.Graph, start_node: str, resource: str, draw, cache: dict 
     queue = [(start_node, 0, [start_node])]  # Add path information to the queue
     path = []
     cache_enabled: bool = True if cache is not None else False
+    connection_count = 0
 
     if cache_enabled:
         cache_key = (start_node, resource)
@@ -31,7 +32,8 @@ def flooding(graph: nx.Graph, start_node: str, resource: str, draw, cache: dict 
     while queue:
         node, ttl, current_path = queue.pop(0)  # Get the current path
         visited.add(node)
-        
+        # TO DO: ver isso
+        connection_count += 1
         if ttl >= max_ttl:
             break
         
@@ -63,8 +65,11 @@ def flooding(graph: nx.Graph, start_node: str, resource: str, draw, cache: dict 
                     graph.nodes[neighbor]['color'] = 'yellow'
                     draw(graph)
                     plt.pause(DELAY)
+
+                # TO DO: ver isso
+                connection_count += 1
     
-    return path, len(visited)  # Return the path and the number of visited nodes
+    return path, connection_count  # Return the path and the number of visited nodes
 
 
 def random_walk(graph: nx.Graph, start_node: str, resource: str, draw, cache: dict = None, max_ttl: int = sys.maxsize):
