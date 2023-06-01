@@ -415,7 +415,7 @@ def bfs(draw, grid, start, end):
             start.make_start()
             write_information("bfs", grid, 0)
             break 
-            
+        
         draw()
 
 
