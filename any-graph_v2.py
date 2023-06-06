@@ -1,7 +1,7 @@
 from matplotlib.axes import Axes
 import networkx as nx
 import matplotlib.pyplot as plt
-from search_functions_v2 import flooding, random_walk
+from search_functions_v2 import flooding, random_walk, instant_random_walk
 from validate import read_and_validate_network
 
 G = read_and_validate_network("grafo.txt")
@@ -53,32 +53,70 @@ draw(G)
 
 # Define start and resource to search
 start_node: str = 'n1'  # Replace with your preferred start node
-resource: str = 'r12'  # Replace with your preferred end node
+resource: str = 'r15'  # Replace with your preferred end node
 plt.pause(2)
 
-print("Running Flooding from node", start_node, "to resource", resource)
-connection_count = flooding(G, start_node, resource, draw, cache_bfs)
-print("connection_count:", connection_count)
+# print("Running Flooding from node", start_node, "to resource", resource)
+# connection_count = flooding(G, 'n2', resource, draw, cache_bfs)
+# print("connection_count:", connection_count)
 
-plt.pause(5)
-clear(G)
+# plt.pause(5)
+# clear(G)
 
-print("Running Flooding from node", start_node, "to resource", resource)
-connection_count = flooding(G, start_node, resource, draw, cache_bfs)
-print("connection_count:", connection_count)
+# print("Running Flooding from node", start_node, "to resource", resource)
+# connection_count = flooding(G, start_node, resource, draw, cache_bfs)
+# print("connection_count:", connection_count)
 
-plt.pause(5)
-clear(G)
+# plt.pause(5)
+# clear(G)
 
-print("Running Random Walk from node", start_node, "to resource", resource)
-connection_count = random_walk(G, start_node, resource, draw, cache_dfs)
-print("connection_count:", connection_count)
+# print("Running Flooding from node", start_node, "to resource", resource)
+# connection_count = flooding(G, 'n3', resource, draw, cache_bfs)
+# print("connection_count:", connection_count)
 
-plt.pause(5)
-clear(G)
+# plt.pause(5)
+# clear(G)
 
-print("Running Random Walk from node", start_node, "to resource", resource)
-connection_count = random_walk(G, start_node, resource, draw, cache_dfs)
-print("connection_count:", connection_count)
+# print("Running Flooding from node", start_node, "to resource", resource)
+# connection_count = flooding(G, start_node, resource, draw, cache_bfs)
+# print("connection_count:", connection_count)
+
+# plt.pause(5)
+# clear(G)
+
+
+
+# print("Running Random Walk from node", start_node, "to resource", resource)
+# connection_count = random_walk(G, 'n2', resource, draw, cache_dfs)
+# print("connection_count:", connection_count)
+
+# plt.pause(5)
+# clear(G)
+
+# print("Running Random Walk from node", start_node, "to resource", resource)
+# connection_count = random_walk(G, start_node, resource, draw, cache_dfs)
+# print("connection_count:", connection_count)
+
+# plt.pause(5)
+# clear(G)
+
+values = []
+for _ in range(1000):
+    path, connection_count = instant_random_walk(G, start_node, resource)
+    values.append(connection_count)
+    clear(G)
+
+# min, max, mean, median, std, 99 percentile, 99.9 percentile
+min = min(values)
+max = max(values)
+mean = sum(values) / len(values)
+median = sorted(values)[len(values) // 2]
+std = (sum((x - mean) ** 2 for x in values) / len(values)) ** 0.5
+
+print("min:", min)
+print("max:", max)
+print("mean:", mean)
+print("median:", median)
+print("std:", std)
 
 plt.show()
