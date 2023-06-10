@@ -75,6 +75,7 @@ def flooding(graph: nx.Graph, start_node: str, resource: str, draw, cache: dict 
                         combined_path = current_path + cache[cache_key_neighbor]
                         combined_path = list(dict.fromkeys(combined_path))
                         draw(graph)
+                        cache[cache_key] = combined_path
                         return combined_path, connection_count
 
             connection_count += 1
